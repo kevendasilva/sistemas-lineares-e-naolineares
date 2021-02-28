@@ -3,78 +3,79 @@ require_relative '../module/showmatrix'
 class Matrix
   include Showmatrix
 
-  @@matrix = []
-  @@reverse = false
-  @@dimensions = [0, 0]
+  attr_reader :dimensions, :matrix, :reverse
 
   # Construtor da classe
-  def initialize(input = [])
-    set_matrix(input)
-    set_dimensions
-    set_reverse
+  def initialize(input = [], type = 'm', line_or_column = nil)
+    @matrix = input
+    reverse_def
+    dimension(type, line_or_column)
   end
 
-  # Dimensões da matriz
-  def set_dimensions
-    @@dimensions[0] = @@matrix.size
-    @@dimensions[1] = @@matrix[0].size
+  # Dimensoes da matriz
+  def dimension(type, line_or_column)
+    @dimensions = []
+    # Caso esteja vazia
+    if @matrix.empty?
+      @dimensions.push(0, 0)
+    # Caso seja uma matriz
+    elsif type == 'm'
+      @dimensions.push(@matrix.size, @matrix[0].size)
+    # Caso seja um vetor
+    elsif type == 'v'
+      case line_or_column
+      when 'l'
+        @dimensions.push(1, @matrix[0].size)
+      when 'c'
+        @dimensions.push(@matrix[0].size, 1)
+      end
+    end
   end
 
-  # Em construção
-  def set_reverse
-    @@reverse
+  # Em construcao
+  def reverse_def
+    @reverse = false
   end
 
-  # Definindo a matriz
-  def set_matrix(input)
-    @@matrix = input
+  def matrix=(input, type = 'm', line_or_column = nil)
+    @matrix = input
+    dimension(type, line_or_column)
   end
 
-  # Dimensões da matriz
-  def get_dimensions
-    @@reverse
-  end
-
-  # A matriz admite inversa?
-  def get_reverse
-    @@reverse
-  end
-
-  # Retornando a matrix
-  def get_matrix
-    @@matrix
-  end
-
-  # Número de linhas da matriz
+  # Numero de linhas da matriz
   def num_of_lines
-    @@dimensions[0]
+    @dimensions[0]
   end
 
-  # Número de colunas da matriz
+  # Numero de colunas da matriz
   def num_of_columns
-    @@dimensions[1]
+    @dimensions[1]
   end
 
   # Alterando elementos de uma matriz
   def element(line, column, element = nil)
     if element.nil?
-      @@matrix[line][column]
+      @matrix[line][column]
     else
-      @@matrix[line][column] = element
+      @matrix[line][column] = element
     end
   end
 
   # Alterando linhas de uma matriz
   def line(line, new_line = nil)
     if new_line.nil?
-      @@matrix[line]
+      @matrix[line]
     else
-      @@matrix[line] = new_line
+      @matrix[line] = new_line
     end
   end
 
-  # Imprimindo a matriz
+  # Imprimindo uma matriz
   def show_matrix
-    Showmatrix.show_matrix(@@matrix)
+    if @dimensions[1] == 1
+      Showmatrix.show_matrix(@matrix, 'c')
+    else
+      Showmatrix.show_matrix(@matrix)
+    end
   end
 end

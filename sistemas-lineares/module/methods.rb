@@ -12,7 +12,7 @@ module Methods
       num_of_interations = matrix.num_of_lines - line
       num_of_interations.times do
         m = matrix.element(line, a).to_f / matrix.element(a, a)
-        matrix.line(line, difference(matrix.line(line), multiplies(matrix.line(a), m)))
+        matrix.line(line, Operations.difference(matrix.line(line), Operations.multiplies(matrix.line(a), m)))
         line += 1
       end
       line = line_before + 1

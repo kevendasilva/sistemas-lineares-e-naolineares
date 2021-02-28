@@ -1,8 +1,12 @@
 require_relative 'matrix'
 require_relative '../module/methods'
+require_relative '../module/operations'
+require_relative '../module/showmatrix'
 # Classe main
 class Main
   include Methods
+  include Operations
+  include Showmatrix
 =begin
 Matrizes para o método de Gauss sem pivotação
 m = [[ 4,  -2,   -3,   6,   12], # Matriz estendida
@@ -17,9 +21,7 @@ m = [ [4, 2, 2,  4],
 m = [[3, 2, 2],
      [1, 4, 3]]
 =end
-  matriz_a = Matrix.new([[4, 2, 2,  4],
-                         [2, 5, 3,-12],
-                         [2, 1, 3,  8]])
 
-  Methods.gauss(matriz_a)
+  matriz_a = Matrix.new([[4, 2, 2, 4]], 'v', 'l')
+  matriz_a.show_matrix
 end

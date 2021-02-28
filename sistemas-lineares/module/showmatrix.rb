@@ -1,5 +1,8 @@
+require_relative 'operations'
 # Modulo utilizado para imprimir uma matriz
 module Showmatrix
+  include Operations
+
   # Igualando os elementos das colunas
   def self.add_space(num, item)
     result = ''
@@ -35,14 +38,6 @@ module Showmatrix
     matrix
   end
 
-  # Substituindo uma coluna
-  def self.switch_column(column, new_column, matrix)
-    matrix.size.times do |i|
-      matrix[i][column] = new_column[i]
-    end
-    matrix
-  end
-
   # Pegando uma coluna de uma matriz
   def self.take_column(column, matrix)
     result = []
@@ -56,13 +51,13 @@ module Showmatrix
   def self.adjust_matrix(matrix)
     matrix_string = matrix_to_string(matrix)
     matrix_string[0].size.times do |i|
-      matrix_string = switch_column(i, adjust(take_column(i, matrix_string)), matrix_string)
+      matrix_string = Operations.replace_column(i, adjust(take_column(i, matrix_string)), matrix_string)
     end
     matrix_string
   end
 
   # Imprimindo uma linha
-  def self.show_line(line)
+  def self.show_line(line, type = 'm')
     string_line = '|'
     line.size.times do |i|
       string_line += if i < line.size - 1
@@ -71,14 +66,15 @@ module Showmatrix
                        "#{line[i]}|"
                      end
     end
+    string_line += '^T' if type == 'c'
     puts string_line
   end
 
   # Imprimindo uma matriz
-  def self.show_matrix(matrix)
-    matrix = adjust_matrix(matrix)
-    matrix.size.times do |i|
-      show_line(matrix[i])
+  def self.show_matrix(matrix, type = 'm')
+    m = adjust_matrix(matrix)
+    m.size.times do |i|
+      show_line(m[i], type)
     end
   end
 end
