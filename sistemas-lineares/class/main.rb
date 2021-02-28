@@ -22,6 +22,17 @@ m = [[3, 2, 2],
      [1, 4, 3]]
 =end
 
-  matriz_a = Matrix.new([[4, 2, 2, 4]], 'v', 'l')
+#  matriz_a = Matrix.new([[4, 2, 2, 4]], 'v', 'c')
+#  matriz_b = Matrix.new([[4, 2, 2, 4]], 'v', 'c')
+
+  matriz_a = Matrix.new([ [4, 2, 2,  4],
+      [2, 5, 3,-12],
+      [2, 1, 3,  8] ])
+  matriz_b = Matrix.new([ [4, 2, 2,  4],
+      [2, 5, 3,-12],
+      [2, 1, 3,  8] ])
+
   matriz_a.show_matrix
+  r = Matrix.new(Operations.sum(matriz_a, matriz_b))
+  r.show_matrix
 end

@@ -25,20 +25,23 @@ module Operations
   # Soma
   def self.sum(input_a, input_b)
     result = []
-    # Caso seja a soma de arrays e as dimensões sejam iguais
-    if ((input_a.is_a? Array) && (input_b.is_a? Array) == true) && (input_a.size == input_b.size && input_a[0].size == input_b[0].size)
-      case (input_a[0].is_a? Array) && (input_b[0].is_a? Array)
-      when true # Caso seja a soma entre Arrays de arrays (matrizes)
-        input_a.size.times do |i| # a.size representa o número de linhas
+    # A soma será realizada somente se a dimensões da matrizes forem iguais
+    if (input_a.instance_of? Matrix) && (input_b.instance_of? Matrix) && (input_a.dimensions == input_b.dimensions)
+      # Caso seja um vetor coluna
+      if input_a.num_of_columns == 1
+        line = []
+        input_a.num_of_lines.times do |j| # O número de linhas
+          line.push(input_a.element(0, j) + input_b.element(0, j))
+        end
+        result.push(line)
+      # Caso sejam vetores linha ou duas matrizes qualquer
+      else
+        input_a.num_of_lines.times do |i|
           line = []
-          input_a[i].size.times do |j| # a[0].size representa o número de colunas
-            line.push(input_a[i][j] + input_b[i][j])
+          input_a.num_of_columns.times do |j|
+            line.push(input_a.element(i, j) + input_b.element(i, j))
           end
           result.push(line)
-        end
-      when false # Caso seja a soma entres arrays (linhas)
-        input_a.size.times do |i| # a.size representa o número de colunas
-          result.push(input_a[i] + input_b[i])
         end
       end
     else

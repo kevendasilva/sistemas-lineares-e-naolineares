@@ -28,53 +28,43 @@ module Showmatrix
   end
 
   # Transformando os elementos da matriz em string
-  def self.matrix_to_string(matrix)
+  def self.matrix_to_string(matrix_string)
     # Passa a matrix para string
-    matrix.size.times do |line|
-      matrix[0].size.times do |column|
-        matrix[line][column] = matrix[line][column].to_s
+    matrix_string.size.times do |line|
+      matrix_string[0].size.times do |column|
+        matrix_string[line][column] = matrix_string[line][column].to_s
       end
     end
-    matrix
+    matrix_string
   end
 
   # Pegando uma coluna de uma matriz
-  def self.take_column(column, matrix)
+  def self.take_column(column, matrix_string)
     result = []
-    matrix.size.times do |i|
-      result.push(matrix[i][column])
+    matrix_string.size.times do |i|
+      result.push(matrix_string[i][column])
     end
     result
   end
 
   # Ajustando a matriz
-  def self.adjust_matrix(matrix)
-    matrix_string = matrix_to_string(matrix)
+  def self.adjust_matrix(matrix_string)
+    matrix_string = matrix_to_string(matrix_string)
     matrix_string[0].size.times do |i|
       matrix_string = Operations.replace_column(i, adjust(take_column(i, matrix_string)), matrix_string)
     end
     matrix_string
   end
 
-  # Imprimindo uma linha
-  def self.show_line(line, type = 'm')
-    string_line = '|'
-    line.size.times do |i|
-      string_line += if i < line.size - 1
-                       "#{line[i]}  "
-                     else
-                       "#{line[i]}|"
-                     end
-    end
-    string_line += '^T' if type == 'c'
-    puts string_line
-  end
-
   # Imprimindo uma matriz
-  def self.show_matrix(matrix, type = 'm')
-    m = adjust_matrix(matrix)
+  def self.show_matrix(matrix)
+    # Alocando um novo espaço na memória, em vez de criar uma referência para o atributo matrix
+    matrix_string = Marshal.load(Marshal.dump(matrix))
+    adjust_matrix(matrix_string)
+=begin
     m.size.times do |i|
       show_line(m[i], type)
     end
+=end
   end
 end

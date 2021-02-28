@@ -3,11 +3,13 @@ require_relative '../module/showmatrix'
 class Matrix
   include Showmatrix
 
-  attr_reader :dimensions, :matrix, :reverse
+  attr_reader :type, :matrix, :reverse, :dimensions
 
   # Construtor da classe
   def initialize(input = [], type = 'm', line_or_column = nil)
     @matrix = input
+    @matrix_string = Showmatrix.show_matrix(@matrix)
+    @type = type
     reverse_def
     dimension(type, line_or_column)
   end
@@ -17,7 +19,7 @@ class Matrix
     @dimensions = []
     # Caso esteja vazia
     if @matrix.empty?
-      @dimensions.push(0, 0)
+      @@dimensions.push(0, 0)
     # Caso seja uma matriz
     elsif type == 'm'
       @dimensions.push(@matrix.size, @matrix[0].size)
@@ -39,6 +41,7 @@ class Matrix
 
   def matrix=(input, type = 'm', line_or_column = nil)
     @matrix = input
+    @type = 'm'
     dimension(type, line_or_column)
   end
 
@@ -72,10 +75,22 @@ class Matrix
 
   # Imprimindo uma matriz
   def show_matrix
-    if @dimensions[1] == 1
-      Showmatrix.show_matrix(@matrix, 'c')
-    else
-      Showmatrix.show_matrix(@matrix)
+    @matrix_string.size.times do |i|
+      show_line(@matrix_string[i])
     end
+  end
+
+  # Imprimindo uma linha
+  def show_line(line)
+    string_line = '|'
+    line.size.times do |i|
+      string_line += if i < line.size - 1
+                       "#{line[i]}  "
+                     else
+                       "#{line[i]}|"
+                     end
+    end
+    string_line += '^T' if @type == 'c'
+    puts string_line
   end
 end
