@@ -171,6 +171,34 @@ module Operations
       line = line_before + 1
       a += 1
     end
+    # Veficando se, após o processo de pivotação ainda existe um elemento pivô igual a zero
+    matrix.num_of_lines.times do |d|
+      # Caso exista, o fluxo é desviado para o método pivot_adjust, que tem como objetivo 
+      # alterar as linhas da matriz de modo que nenhum pivô seja nulo (supondo que o sistema
+      # linear descrito pela matriz possui solução)
+      pivot_adjust(matrix, d) if matrix.element(d, d).zero?
+    end
+    matrix
+  end
+
+  # Ajuste de pivotação
+  def self.pivot_adjust(matrix, d)
+    # Caso o elemento pivô seja zero, é preciso procurar uma nova linha, cujo elemento pivô não
+    # se anule no processo de troca.
+    # Ou seja, caso uma linha d possua o elemento pivô, na posição (d, d), igual a zero
+    # procure uma linha l, com d diferente de l, de modo que o elemento (l, d) (novo pivô da linha d)
+    # seja diferente de zero, e o elemento da linha d, na posição (d, l), seja diferente de zero.
+    # 
+    # Percorrrendo todas as linhas da matriz
+    find = false
+    l = 0
+    while !find && l < matrix.num_of_lines
+      if (l != d) && (matrix.element(l, d) != 0) && (matrix.element(d, l) != 0)
+        matrix = switch_line(l, d, matrix)
+        find = true
+      end
+      l += 1
+    end
     matrix
   end
 end
