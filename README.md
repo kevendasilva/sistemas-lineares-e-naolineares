@@ -1,6 +1,7 @@
 # Trabalho 2 - Resolução de Sistemas Lineares e Não-Lineares
 
- Resolução de Sistemas Lineares
+ 
+## Resolução de Sistemas Lineares
 * Escolher um sistema de equações lineares e outro sistema de equações não-lineares;
 * Implementar todos os métodos numéricos apresentados durante a aula: Método da Eliminação de Gauss, Gauss-Jacobi, Gauss-Seidel. Comparem o tempo que o algoritmo leva para convergir (número de iterações) e os erros de cada um deles;
 * Escolham a linguagem que desejarem: Matlab/GNU Octave, Scilab, Python, R, C/C++, Basic, Java, Pascal;

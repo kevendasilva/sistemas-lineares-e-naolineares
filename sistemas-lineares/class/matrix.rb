@@ -1,7 +1,7 @@
 require_relative '../module/showmatrix'
 # Classe matriz
 class Matrix
-  include Showmatrix
+  include Showmatrix # Adicionando o módulo
 
   attr_reader :dimensions, :reverse, :type, :matrix
 
@@ -18,7 +18,7 @@ class Matrix
     @dimensions = []
     # Caso esteja vazia
     if @matrix.empty?
-      @@dimensions.push(0, 0)
+      @dimensions.push(0, 0)
     # Caso seja uma matriz
     elsif type == 'm'
       @dimensions.push(@matrix.size, @matrix[0].size)
@@ -57,24 +57,36 @@ class Matrix
 
   # Alterando elementos de uma matriz
   def element(line, column, element = nil)
-    if element.nil?
+    case element.nil?
+    when true
       # Caso seja um vetor linha
       if @dimensions[0] == 1
         @matrix[0][column]
       # Caso seja um vetor coluna
       elsif @dimensions[1] == 1
         @matrix[0][line]
+      # Caso seja um matriz
       else
         @matrix[line][column]
       end
-    else
-      @matrix[line][column] = element
+    when false
+      # Caso seja um vetor linha
+      if @dimensions[0] == 1
+        @matrix[0][column] = element
+      # Caso seja um vetor coluna
+      elsif @dimensions[1] == 1
+        @matrix[0][line] = element
+      # Caso seja uma matriz
+      else
+        @matrix[line][column] = element
+      end
     end
   end
 
   # Alterando linhas de uma matriz
   def line(line, new_line = nil)
-    if new_line.nil?
+    case new_line.nil?
+    when true
       # Caso seja um vetor linha
       if @dimensions[0] == 1
         @matrix[0]
@@ -86,8 +98,17 @@ class Matrix
         @matrix[line]
       end
     # Caso deseje alterar uma linha
-    else
-      @matrix[line] = new_line
+    when false
+      # Caso seja um vetor linha
+      if @dimensions[0] == 1
+        @matrix[0] = line 
+      # Caso seja um vetor coluna
+      elsif @dimensions[1] == 1
+        @matrix[0][line] = line
+      # Caso seja uma matriz
+      else
+        @matrix[line] = line
+      end
     end
   end
 
@@ -99,7 +120,6 @@ class Matrix
     end
   end
 
-  # Alterar visibilidade
   # Imprimindo uma linha
   def show_line(line)
     string_line = '|'
@@ -113,4 +133,6 @@ class Matrix
     string_line += '^T' if @type == 'v' && @dimensions[1] == 1
     puts string_line
   end
+
+  private :show_line, :reverse_def, :dimension
 end

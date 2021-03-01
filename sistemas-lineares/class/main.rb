@@ -21,6 +21,10 @@ class Main
   puts '~=~= Matriz estendida antes do método de Gauss =~=~'
   puts "\n"
   matriz = Matrix.new(m)
+
+  # Casos deseje realizar o processo de pivotação na matriz, descomente a linha abaixo
+# matriz = Operations.pivot(matriz)
+
   # Apresentando a matriz inicial
   #
   matriz.show_matrix

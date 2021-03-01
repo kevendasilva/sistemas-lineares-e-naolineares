@@ -1,3 +1,5 @@
+Exemplos de matrizes.
+
 =begin
 Matrizes para o método de Gauss sem pivotação
 m = [[ 4,  -2,   -3,   6,   12], # Matriz estendida
