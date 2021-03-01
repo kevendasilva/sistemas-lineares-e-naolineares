@@ -61,10 +61,5 @@ module Showmatrix
     # Alocando um novo espaço na memória, em vez de criar uma referência para o atributo matrix
     matrix_string = Marshal.load(Marshal.dump(matrix))
     adjust_matrix(matrix_string)
-=begin
-    m.size.times do |i|
-      show_line(m[i], type)
-    end
-=end
   end
 end
