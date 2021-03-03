@@ -9,11 +9,15 @@ class Main
   include Operations
   include Showmatrix
 
+  # Método de eliminação de Gauss
+
   # O colchete mais externo não deve ser removido e, uma linha está dentro de um outro colchete.
   m = [[ 4,  -2,   -3,   6,   12], # Matriz estendida
        [-6,   7,  6.5,  -6, -6.5],
        [ 1, 7.5, 6.25, 5.5,   16],
        [-12, 22, 15.5,  -1,   17] ]
+
+  puts '~= Método de eliminação de Gauss =~'
 
   # Instânciando um objeto com a classe Matrix
   #
@@ -39,7 +43,7 @@ class Main
   matriz_gauss.show_matrix
   # Realizando a substituição regressiva
   #
-  vetor_x = Properties.sub_regressiva(matriz_gauss)
+  vetor_x = Properties.reg_substitution(matriz_gauss)
   # Apresentando as soluções
   #
   puts "\n"
@@ -62,5 +66,74 @@ class Main
   teste.show_matrix
 
   puts "\n"
-  puts 'Verifica-se que o vetor coluna obtido, é igual a coluna 5 da matriz estendida, antes do método da eliminação de Gauss'
+  puts 'Verifica-se que o vetor coluna obtido, é igual a coluna 5 da matriz estendida, antes do método de eliminação de Gauss'
+
+  # Métodos iterativos
+  # Método de Jacobi
+  puts "\n"
+  puts '-=-=-=-=-=-=-=-= Métodos Iterativos =-=-=-=-=-=-=-=-'
+  puts "\n"
+
+  puts 'Método de Jacobi'
+  # Matriz escolhida
+  m_b = [[ 8,   -4,    0, -1,    0,    0,  20], # Matriz estendida
+         [ 0, -2.5,  4.5,  0,    0,   -2,  14],
+         [ 0,   -5,    0, -2,  8.5, -1.5, -30],
+         [-4, 11.5, -2.5,  0,   -5,    0, -12],
+         [-1,    0,    0,  3,   -2,    0,   8],
+         [ 0,    0,   -2,  0, -1.5,    8,   0]]
+
+  # Instânciando um objeto com a classe Matrix
+  #
+  matriz_b = Matrix.new(m_b)
+  puts "\n"
+  puts '~=~= Matriz estendida =~=~'
+  puts "\n"
+  matriz_b.show_matrix
+
+  # Como alguns coeficientes da diagonal são iguais a zero, o processo de pivotação deve ser realizado.
+  matriz_b = Operations.pivot(matriz_b)
+
+  puts "\n"
+  puts '~=~= Matriz estendida após o processo de pivotação =~=~'
+  puts "\n"
+  # Exibindo a matriz
+  matriz_b.show_matrix
+
+  # Solução estimada
+  vetor_x_b = Methods.jacobi([0, 0, 0, 0, 0, 0], matriz_b)
+
+  # Apresentando a solução estimada
+
+  puts "\n"
+  puts '~=~= Solução estimada pelo método de Jacobi =~=~'
+  puts "\n"
+
+  vetor_x_b.show_matrix
+
+  # Verificando os resultados
+
+  # Matriz de coeficientes do sistema
+  matriz_b_coeficientes = Matrix.new([[ 8,   -4,    0, -1,    0,    0],
+                                      [ 0, -2.5,  4.5,  0,    0,   -2],
+                                      [ 0,   -5,    0, -2,  8.5, -1.5],
+                                      [-4, 11.5, -2.5,  0,   -5,    0],
+                                      [-1,    0,    0,  3,   -2,    0],
+                                      [ 0,    0,   -2,  0, -1.5,    8]])
+  
+  # Realizando a multiplicação da matriz de coeficientes pelo vetor solução
+
+  teste_b = Operations.multiplies(matriz_b_coeficientes, vetor_x_b)
+  
+  # Apresentando o resultado da multiplicação entre a matriz de coeficientes e o vetor solução
+  
+  puts "\n"
+  puts '~=~= Resultado da multiplicação =~=~'
+  puts "\n"
+
+  teste_b.show_matrix
+
+  puts "\n"
+  puts 'Podemos verificar que o resultado é, aproximadamente, igual a coluna 7 da matriz, antes do processo de pivotação.'
+  puts "\n"
 end

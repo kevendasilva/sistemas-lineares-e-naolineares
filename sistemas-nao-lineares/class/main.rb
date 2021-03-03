@@ -10,7 +10,7 @@ class Main
 =end
 
   x_i = 1 # Estimativas iniciais
-  y_i = 2
+  y_i = 1
   err = 0.003 # Erro escolhido
   n = 1 # Contador de iterações
 
@@ -28,7 +28,7 @@ class Main
     puts '*-*-*-*-*-*-*-*-*-*'
     puts "Iteração de número #{n}"
     puts '*-*-*-*-*-*-*-*-*-*'
-    puts 'O valor de y_ip1 é %0.06f e o erro é %0.06f' % [x_ip1, err_x]
+    puts 'O valor de x_ip1 é %0.06f e o erro é %0.06f' % [x_ip1, err_x]
     puts '&'
     puts 'O valor de y_ip1 é %0.06f e o erro é %0.06f' % [y_ip1, err_y]
     puts '*-*-*-*-*-*-*-*-*-*'

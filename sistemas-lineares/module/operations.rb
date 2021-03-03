@@ -188,7 +188,7 @@ module Operations
     # Ou seja, caso uma linha d possua o elemento pivô, na posição (d, d), igual a zero
     # procure uma linha l, com d diferente de l, de modo que o elemento (l, d) (novo pivô da linha d)
     # seja diferente de zero, e o elemento da linha d, na posição (d, l), seja diferente de zero.
-    # 
+    #
     # Percorrrendo todas as linhas da matriz
     find = false
     l = 0

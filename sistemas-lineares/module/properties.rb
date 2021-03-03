@@ -51,7 +51,7 @@ module Properties
     b_n.to_f / a_nn
   end
 
-  def self.sub_regressiva(matrix)
+  def self.reg_substitution(matrix)
     n = matrix.num_of_lines - 1
     x = [initial(matrix, n)]
     range = (0..(n - 1)).to_a.reverse
