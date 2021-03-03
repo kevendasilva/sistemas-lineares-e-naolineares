@@ -62,5 +62,5 @@ class Main
   teste.show_matrix
 
   puts "\n"
-  puts 'Verifaca-se que o vetor coluna obtido, é igual a coluna 5 da matriz estendida, antes do método da eliminação de Gauss'
+  puts 'Verifica-se que o vetor coluna obtido, é igual a coluna 5 da matriz estendida, antes do método da eliminação de Gauss'
 end

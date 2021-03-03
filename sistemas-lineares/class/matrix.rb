@@ -57,26 +57,22 @@ class Matrix
 
   # Alterando elementos de uma matriz
   def element(line, column, element = nil)
-    case element.nil?
-    when true
+    if element.nil?
       # Caso seja um vetor linha
       if @dimensions[0] == 1
         @matrix[0][column]
       # Caso seja um vetor coluna
       elsif @dimensions[1] == 1
         @matrix[0][line]
-      # Caso seja um matriz
       else
         @matrix[line][column]
       end
-    when false
+    else
       # Caso seja um vetor linha
       if @dimensions[0] == 1
         @matrix[0][column] = element
-      # Caso seja um vetor coluna
       elsif @dimensions[1] == 1
         @matrix[0][line] = element
-      # Caso seja uma matriz
       else
         @matrix[line][column] = element
       end
@@ -85,8 +81,7 @@ class Matrix
 
   # Alterando linhas de uma matriz
   def line(line, new_line = nil)
-    case new_line.nil?
-    when true
+    if new_line.nil?
       # Caso seja um vetor linha
       if @dimensions[0] == 1
         @matrix[0]
@@ -98,17 +93,8 @@ class Matrix
         @matrix[line]
       end
     # Caso deseje alterar uma linha
-    when false
-      # Caso seja um vetor linha
-      if @dimensions[0] == 1
-        @matrix[0] = line 
-      # Caso seja um vetor coluna
-      elsif @dimensions[1] == 1
-        @matrix[0][line] = line
-      # Caso seja uma matriz
-      else
-        @matrix[line] = line
-      end
+    else
+      @matrix[line] = new_line
     end
   end
 
