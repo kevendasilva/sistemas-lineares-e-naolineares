@@ -17,6 +17,8 @@ class Main
        [ 1, 7.5, 6.25, 5.5,   16],
        [-12, 22, 15.5,  -1,   17] ]
 
+  puts '~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~'
+  puts "\n"
   puts '~= Método de eliminação de Gauss =~'
 
   # Instânciando um objeto com a classe Matrix
@@ -49,7 +51,7 @@ class Main
   puts "\n"
   puts '~=~= Solução =~=~'
   puts "\n"
-  puts 'Após o processo de substituição regressiva, obtive o seguinte vetor coluna:'
+  puts 'Após o processo de substituição regressiva, obtive o seguinte vetor linha:'
   vetor_x.show_matrix
 
   puts "\n"
@@ -68,13 +70,19 @@ class Main
   puts "\n"
   puts 'Verifica-se que o vetor coluna obtido, é igual a coluna 5 da matriz estendida, antes do método de eliminação de Gauss'
 
+  puts "\n"
+  puts '                         v'
+  matriz.show_matrix
+  puts "\n"
+  puts '~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~'
+
   # Métodos iterativos
   # Método de Jacobi
   puts "\n"
   puts '-=-=-=-=-=-=-=-= Métodos Iterativos =-=-=-=-=-=-=-=-'
   puts "\n"
 
-  puts 'Método de Jacobi'
+  puts '~= Método de Jacobi =~'
   # Matriz escolhida
   m_b = [[ 8,   -4,    0, -1,    0,    0,  20], # Matriz estendida
          [ 0, -2.5,  4.5,  0,    0,   -2,  14],
@@ -101,13 +109,22 @@ class Main
   matriz_b.show_matrix
 
   # Solução estimada
-  vetor_x_b = Methods.jacobi([0, 0, 0, 0, 0, 0], matriz_b)
+  vetor_x_b, num_de_iteracoes = Methods.jacobi([0, 0, 0, 0, 0, 0], matriz_b, 0)
 
   # Apresentando a solução estimada
 
   puts "\n"
   puts '~=~= Solução estimada pelo método de Jacobi =~=~'
   puts "\n"
+
+  # Realizando o arredondamento da solução
+
+  n = vetor_x_b.num_of_lines
+
+  n.times do |i|
+    # Arredondando para 6 casas decimais
+    vetor_x_b.element(i, 0, vetor_x_b.element(i, 0).round(6))
+  end
 
   vetor_x_b.show_matrix
 
@@ -120,13 +137,23 @@ class Main
                                       [-4, 11.5, -2.5,  0,   -5,    0],
                                       [-1,    0,    0,  3,   -2,    0],
                                       [ 0,    0,   -2,  0, -1.5,    8]])
-  
+
   # Realizando a multiplicação da matriz de coeficientes pelo vetor solução
 
   teste_b = Operations.multiplies(matriz_b_coeficientes, vetor_x_b)
-  
+
+  # Arredondamento do teste
+
+  n = teste_b.num_of_lines
+
+  n.times do |i|
+    teste_b.element(i, 0, teste_b.element(i, 0).round(6))
+  end
+
   # Apresentando o resultado da multiplicação entre a matriz de coeficientes e o vetor solução
-  
+
+  puts "\n"
+  puts 'Apresentando o resultado da multiplicação entre a matriz de coeficientes e o vetor solução.'
   puts "\n"
   puts '~=~= Resultado da multiplicação =~=~'
   puts "\n"
@@ -136,4 +163,96 @@ class Main
   puts "\n"
   puts 'Podemos verificar que o resultado é, aproximadamente, igual a coluna 7 da matriz, antes do processo de pivotação.'
   puts "\n"
+  puts "O número de iterações foi: #{num_de_iteracoes}."
+  puts '~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~'
+
+  # Método de Gauss-Seidel
+
+  puts "\n"
+  puts '~= Método de Gauss-Seidel =~'
+
+  # Matriz escolhida
+  m_c = [[ 8,   -4,    0, -1,    0,    0,  20], # Matriz estendida
+         [ 0, -2.5,  4.5,  0,    0,   -2,  14],
+         [ 0,   -5,    0, -2,  8.5, -1.5, -30],
+         [-4, 11.5, -2.5,  0,   -5,    0, -12],
+         [-1,    0,    0,  3,   -2,    0,   8],
+         [ 0,    0,   -2,  0, -1.5,    8,   0]]
+
+  # Instânciando um objeto com a classe Matrix
+  #
+  matriz_c = Matrix.new(m_c)
+
+  puts "\n"
+  puts '~=~= Matriz estendida =~=~'
+  puts "\n"
+  # Apresentando a matriz
+  matriz_c.show_matrix
+
+  # Realizando o processo de pivotação
+  matriz_c = Operations.pivot(matriz_c)
+
+  puts "\n"
+  puts '-=-= Matriz após o processo de pivotação =~=~'
+  puts "\n"
+  # Exibindo a matriz
+  matriz_c.show_matrix
+
+  puts "\n"
+  puts '~=~= Solução encontrada com o método iterativo de Gauss-Seidel =~=~'
+  puts "\n"
+
+  # Encontrando a solução estimada
+  vetor_x_c, num_de_iteracoes = Methods.gauss_seidel([0, 0, 0, 0, 0, 0], matriz_c, 0)
+
+  # Arredondamento das solução
+
+  n = vetor_x_c.num_of_lines
+
+  n.times do |i|
+    # Arredondando para 6 casas decimais
+    vetor_x_c.element(i, 0, vetor_x_c.element(i, 0).round(6))
+  end
+
+  # Apresentando o vetor solução
+  vetor_x_c.show_matrix
+
+  # Verificando os resultados
+
+  # Matriz de coeficientes do sistema
+  matriz_c_coeficientes = Matrix.new([[ 8,   -4,    0, -1,    0,    0],
+                                      [ 0, -2.5,  4.5,  0,    0,   -2],
+                                      [ 0,   -5,    0, -2,  8.5, -1.5],
+                                      [-4, 11.5, -2.5,  0,   -5,    0],
+                                      [-1,    0,    0,  3,   -2,    0],
+                                      [ 0,    0,   -2,  0, -1.5,    8]])
+
+  # Realizando a multiplicação da matriz de coeficientes pelo vetor solução
+
+  teste_c = Operations.multiplies(matriz_c_coeficientes, vetor_x_c)
+
+  # Arredondamento do teste
+
+  n = teste_c.num_of_lines
+
+  n.times do |i|
+    teste_c.element(i, 0, teste_c.element(i, 0).round(6))
+  end
+
+  # Apresentando o resultado da multiplicação entre a matriz de coeficientes e o vetor solução
+
+  puts "\n"
+  puts 'Apresentando o resultado da multiplicação entre a matriz de coeficientes e o vetor solução.'
+  puts "\n"
+  puts '~=~= Resultado da multiplicação =~=~'
+  puts "\n"
+
+  teste_b.show_matrix
+
+  puts "\n"
+  puts 'Podemos verificar que o resultado é, aproximadamente, igual a coluna 7 da matriz, antes do processo de pivotação.'
+  puts "\n"
+  puts "O número de iterações foi: #{num_de_iteracoes}."
+  puts '~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~'
+
 end

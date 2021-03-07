@@ -13,15 +13,6 @@ module Operations
     matrix
   end
 
-  # Pegando uma coluna de uma matriz
-  def self.take_column(column, matrix)
-    result = []
-    matrix.num_of_lines.times do |i|
-      result.push(matrix.element(i, column))
-    end
-    result
-  end
-
   # Substituindo uma coluna
   def self.replace_column(column, new_column, matrix)
     matrix.size.times do |i|
@@ -30,7 +21,6 @@ module Operations
     matrix
   end
 
-  # OK
   # Soma
   def self.sum(input_a, input_b)
     result = []
@@ -44,7 +34,7 @@ module Operations
         end
         result.push(line)
         result = Matrix.new(result, 'v', 'c')
-      # Caso sejam vetores linha ou duas matrizes qualquer
+      # Caso sejam vetores linha ou duas matrizes quaisquer
       else
         input_a.num_of_lines.times do |i|
           line = []
@@ -65,7 +55,6 @@ module Operations
     result
   end
 
-  # OK
   # Diferença
   def self.difference(input_a, input_b)
     result = []
@@ -79,7 +68,7 @@ module Operations
         end
         result.push(line)
         result = Matrix.new(result, 'v', 'c')
-      # Caso sejam vetores linha ou duas matrizes qualquer
+      # Caso sejam vetores linha ou duas matrizes quaisquer
       else
         input_a.num_of_lines.times do |i|
           line = []

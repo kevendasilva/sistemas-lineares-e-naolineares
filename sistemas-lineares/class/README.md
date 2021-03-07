@@ -4,7 +4,7 @@ Detalhes a respeito das classes utilizadas nesse trabalho.
 
 ## Classe Main
 
-A classe **Main** reúne todos os `dados de entrada`. Nessa classe é definida a matriz utilizada na aplicação dos métodos (sistemas lineares), bem como comentários sobre o passo a passo da aplicação.
+A classe **Main** reúne todos os `dados de entrada`. Nessa classe são definidas as matrizes utilizadas na aplicação dos métodos (sistemas lineares), bem como comentários sobre o passo a passo da aplicação.
 
 ## Classe Matrix
 
@@ -44,6 +44,6 @@ Caso seja um vetor coluna:
 vetor_coluna = Matrix.new([[1, 2]], 'v', 'c')
 ```
 
-Em ambos os casos, o segundo parâmentro ('v'), indica que será uma matriz do tipo vetor. E, o terceiro parâmetro 'l' ou 'c', definem se o vetor é linha ou coluna, respectivamente.
+Em ambos os casos, o segundo parâmentro ('v'), indica que será uma matriz do tipo vetor. E, o terceiro parâmetro 'l' ou 'c', define se o vetor é linha ou coluna, respectivamente.
 
 Alguns métodos são definidos nessa classe. O mais importante é o método "show_matrix" utilizado para apresentar a matriz. O método "reverse" ainda está em construção. Este deveria retornar, caso exista, a inversa da matriz definida anteriormente.

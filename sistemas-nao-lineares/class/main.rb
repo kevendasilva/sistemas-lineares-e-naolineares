@@ -17,6 +17,10 @@ class Main
   puts "\n \n"
   puts 'Solução de sistemas não-lineares'
   puts "\n \n"
+  puts 'Sistema escolhido:'
+  puts 'f1(x,y) = x^2 + y^2 - 4 = 0'
+  puts 'f2(x,y) = y - x^2 - 1 = 0'
+  puts "\n \n"
   puts "A estimativa inicial é: (x, y) = (#{x_i}, #{y_i})"
   puts "\n \n"
 
@@ -34,6 +38,7 @@ class Main
     puts '*-*-*-*-*-*-*-*-*-*'
     puts "\n"
     break if err_x < err && err_y < err # Caso os erros das estimativas seja menor que o erro estabelecido
+
     # o laço termina.
 
     n += 1 # Caso o laço não termine, novas soluções devem ser estimadas.

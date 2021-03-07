@@ -1,39 +1,14 @@
 # Propriedades de uma matriz
 module Properties
-  # Pegando uma coluna de uma matriz
-  def self.take_column(column, matrix)
-    result = []
-    matrix.num_of_lines.times do |i|
-      result.push(matrix.element(i, column))
-    end
-    result
-  end
-
-  # Trocando a posicao de duas linhas
-  def self.switch_line(line_a, line_b, matrix)
-    aux = matrix.line(line_a)
-    matrix.line(line_a, line_b)
-    matrix.line(line_b, aux)
-    matrix
-  end
-
-  # Substituindo uma coluna
-  def self.replace_column(column, new_column, matrix)
-    matrix.size.times do |i|
-      matrix[i][column] = new_column[i]
-    end
-    matrix
-  end
-
-  def self.a_ij(matrix, i, j)
+  def self.a_ij(matrix, i, j) # Elemento a_ij
     matrix.element(i, j)
   end
 
-  def self.b_i(matrix, i)
+  def self.b_i(matrix, i) # Elemento b_i
     matrix.element(i, matrix.num_of_lines)
   end
 
-  def self.x_j(x, j)
+  def self.x_j(x, j) # Incógnita x_j
     x[j]
   end
 
@@ -45,7 +20,7 @@ module Properties
     sum
   end
 
-  def self.initial(matrix, n)
+  def self.initial(matrix, n) # Valor da incógnita final (x_n)
     b_n = matrix.element(n, n + 1)
     a_nn = matrix.element(n, n)
     b_n.to_f / a_nn

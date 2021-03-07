@@ -43,4 +43,4 @@ Esse módulo é utilizado para "imprimir" uma matriz. Nele são utilizadas funç
 
 ## Módulo Properties
 
-O módulo **Properties** reúne algumas funções especiais. Como por exemplo, a função `sub_regressiva`, utilizada para determinar as soluções de um sistema linear.
+O módulo **Properties** reúne algumas funções especiais. Como por exemplo, a função `reg_substitution`, utilizada para determinar as soluções de um sistema linear.

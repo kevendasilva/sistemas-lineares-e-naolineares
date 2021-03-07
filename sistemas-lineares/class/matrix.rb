@@ -3,17 +3,17 @@ require_relative '../module/showmatrix'
 class Matrix
   include Showmatrix # Adicionando o módulo
 
-  attr_reader :dimensions, :reverse, :type, :matrix
+  attr_reader :dimensions, :reverse, :type, :matrix # Assessores da classe
 
   # Construtor da classe
   def initialize(input = [], type = 'm', line_or_column = nil)
     @matrix = input
     @type = type
     reverse_def
-    dimension(type, line_or_column)
+    dimension(type, line_or_column) # Definindo as dimensões da matriz
   end
 
-  # Dimensoes da matriz
+  # Dimensões da matriz
   def dimension(type, line_or_column)
     @dimensions = []
     # Caso esteja vazia
@@ -33,7 +33,6 @@ class Matrix
     end
   end
 
-  # Alterar a visibilidade
   # Em construcao
   def reverse_def
     @reverse = false
@@ -59,20 +58,22 @@ class Matrix
   def element(line, column, element = nil)
     if element.nil?
       # Caso seja um vetor linha
-      if @dimensions[0] == 1
+      if @dimensions[0] == 1 && @type == 'v'
         @matrix[0][column]
       # Caso seja um vetor coluna
-      elsif @dimensions[1] == 1
+      elsif @dimensions[1] == 1 && @type == 'v'
         @matrix[0][line]
       else
         @matrix[line][column]
       end
     else
       # Caso seja um vetor linha
-      if @dimensions[0] == 1
+      if @dimensions[0] == 1 && @type == 'v'
         @matrix[0][column] = element
-      elsif @dimensions[1] == 1
+      # Caso seja um vetor coluna
+      elsif @dimensions[1] == 1 && @type == 'v'
         @matrix[0][line] = element
+      # Caso seja uma matriz
       else
         @matrix[line][column] = element
       end
@@ -94,13 +95,26 @@ class Matrix
       end
     # Caso deseje alterar uma linha
     else
-      @matrix[line] = new_line
+      # Caso seja um vetor linha
+      if @dimensions[0] == 1 && @type == 'v'
+        @matrix[0] = new_line
+      elsif @dimensions[1] == 1 && @type == 'v'
+        # Caso seja um vetor coluna
+        @matrix[0][line] = if new_line.instance_of? Array
+                             new_line.pop
+                           else
+                             new_line
+                           end
+      else
+        # Caso seja uma matriz
+        @matrix[line] = new_line
+      end
     end
   end
 
   # Imprimindo uma matriz
   def show_matrix
-    @matrix_string = Showmatrix.show_matrix(@matrix)
+    @matrix_string = Showmatrix.show_matrix(@matrix) # Criando uma cópia da matriz e passa para caracter.
     @matrix_string.size.times do |i|
       show_line(@matrix_string[i])
     end
@@ -120,5 +134,5 @@ class Matrix
     puts string_line
   end
 
-  private :show_line, :reverse_def, :dimension
+  private :show_line, :reverse_def, :dimension # Definindo a visibilidade de alguns métodos
 end
