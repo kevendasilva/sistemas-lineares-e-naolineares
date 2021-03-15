@@ -108,8 +108,13 @@ class Main
   # Exibindo a matriz
   matriz_b.show_matrix
 
+  # Criando arquivo para salvar as soluções numéricas
+  arq_jacobi = File.new('../../../Dados/jacobi.json', 'w+')
+
+  arq_jacobi.puts '['
+
   # Solução estimada
-  vetor_x_b, num_de_iteracoes = Methods.jacobi([0, 0, 0, 0, 0, 0], matriz_b, 0)
+  vetor_x_b, num_de_iteracoes = Methods.jacobi([0, 0, 0, 0, 0, 0], matriz_b, 0, arq_jacobi)
 
   # Apresentando a solução estimada
 
@@ -202,8 +207,13 @@ class Main
   puts '~=~= Solução encontrada com o método iterativo de Gauss-Seidel =~=~'
   puts "\n"
 
+  # Criando arquivo para salvar as soluções numéricas
+  arq_gauss_seidel = File.new('../../../Dados/gauss_seidel.json', 'w+')
+
+  arq_gauss_seidel.puts '['
+
   # Encontrando a solução estimada
-  vetor_x_c, num_de_iteracoes = Methods.gauss_seidel([0, 0, 0, 0, 0, 0], matriz_c, 0)
+  vetor_x_c, num_de_iteracoes = Methods.gauss_seidel([0, 0, 0, 0, 0, 0], matriz_c, 0, arq_gauss_seidel)
 
   # Arredondamento das solução
 

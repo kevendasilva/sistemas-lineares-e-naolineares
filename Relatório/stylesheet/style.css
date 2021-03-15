@@ -1,0 +1,11 @@
+section {
+  border-style: solid;
+}
+
+.code {
+  border-style: solid;
+  border-width: 1.5px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.815);
+  border-color: black;
+}

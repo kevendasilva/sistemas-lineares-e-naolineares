@@ -1,0 +1,63 @@
+/* Matriz escolhida (estendida)
+ * m = [[ 8,   -4,    0, -1,    0,    0,  20],
+ *      [ 0, -2.5,  4.5,  0,    0,   -2,  14],
+ *      [ 0,   -5,    0, -2,  8.5, -1.5, -30],
+ *      [-4, 11.5, -2.5,  0,   -5,    0, -12],
+ *      [-1,    0,    0,  3,   -2,    0,   8],
+ *      [ 0,    0,   -2,  0, -1.5,    8,   0]]
+ * 
+ * Solução numérica estimada
+ * (como não possuo nenhuma estimativa inicial, todas as incógnitas são iguais a zero)
+ * initial_solution = [0, 0, 0, 0, 0, 0]
+ *
+ * Erro escolhido (e) = 0.000001
+ * 
+ * A variável 'ite' foi utilizada com contador de iterações
+ * Quando o método 'jacobi' é chamado, ite = 0
+ */
+
+ Inicio algoritmo
+
+  FUNÇÃO err_x_i(initial_solution, next_solution)
+    // Vetor inicialmente vazio
+    err_x_i = []
+    // Percorrendo cada incógnita
+    num_of_interations = tamanho_de(initial_solution)
+    // A variável 'i' varia de 0 até (num_of_interations - 1)
+    PARA num_of_interations VEZES, FAÇA |i|
+      // Caso o erro relativo estimado seja menor que 'e' (e = 0.000001)
+      SE ((next_solution[i] - initial_solution[i]) / initial_solution[i]).abs < 0.000001
+        // Caso o erro da incógnita seja menor que o erro escolhido, o vetor recebe o valor lógico "true"
+        err_x_i.push(true)
+      SENÃO
+        err_x_i.push(false) # Caso contrário, recebe "false"
+      FIM SE
+    FIM PARA
+    RETORNE err_x_i
+  FIM FUNÇÃO
+
+  FUNÇÃO jacobi(initial_solution, matrix, ite)
+    // Contandor de iterações
+    ite = ite + 1
+    // Vetor que conterá a próxima solução (inicialmente vazio)
+    next_solution = []
+    n = matrix.num_of_lines - 1
+    // A variável 'i' varia de 0 a n, ou seja, de 0 a matrix.num_of_lines - 1
+    PARA CADA VALOR NO RANGE (0..n) FAÇA |i|
+      next_solution.push((b_i(matrix, i) - sum(initial_solution, matrix, i, n)) / a_ij(matrix, i, i).to_f)
+    FIM PARA CADA
+    
+    // Calculando o erro de cada uma das incógnitas com a FUNÇÃO 'err_x_i'
+    err_x_i = err_x_i(initial_solution, next_solution)
+    // Caso o erro de uma das variáveis não atenda a condição estabelecida.
+    SE err_x_i CONTÉM false 
+      // Uma nova iteração é iniciada.
+      jacobi(next_solution, matrix, ite)
+    SENÃO
+      // Caso a solução encontrada seja satisfatória
+      // Retornando a solução estimada e o número de iterações
+      RETORNE [next_solution, ite]
+    end
+  end
+
+ Fim algoritmo

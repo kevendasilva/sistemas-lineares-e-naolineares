@@ -1,0 +1,53 @@
+/* Matriz escolhida (estendida)
+ * m = [[ 8,   -4,    0, -1,    0,    0,  20],
+ *      [ 0, -2.5,  4.5,  0,    0,   -2,  14],
+ *      [ 0,   -5,    0, -2,  8.5, -1.5, -30],
+ *      [-4, 11.5, -2.5,  0,   -5,    0, -12],
+ *      [-1,    0,    0,  3,   -2,    0,   8],
+ *      [ 0,    0,   -2,  0, -1.5,    8,   0]]
+ * 
+ * Solução numérica estimada
+ * (como não possuo nenhuma estimativa inicial, todas as incógnitas são iguais a zero)
+ * initial_solution = [0, 0, 0, 0, 0, 0]
+ *
+ * Erro escolhido (e) = 0.000001
+ * 
+ * A variável 'ite' foi utilizada com contador de iterações
+ * Quando o método 'gauss_seidel' é chamado, ite = 0
+ */
+
+Inicio algoritmo
+
+  // Método de eliminação de Gauss
+  FUNÇÃO self.gauss(matrix)
+    // Criando uma copia do parãmetro de entrada
+    matrix_gauss = FAÇA_UMA_CÓPIA_DE(matrix) 
+    // A eliminação começa na "linha 1" (que na verdade é a linha 2)
+    line = 1
+    // Coluna inicial
+    a = 0
+    // Percorrendo (n - 1) linhas da matriz. Começando a partir da segunda linha.
+    PARA (matrix_gauss.num_of_lines - 1) VEZES FAÇA
+      // "Salvando" o número da linha
+      line_before = line
+      // Número de linhas que serão utilizadas nas operações.
+      num_of_interations = matrix_gauss.num_of_lines - line
+      PARA num_of_interations VEZES FAÇA
+        m = matrix_gauss.element(line, a).to_f / matrix_gauss.element(a, a)
+        line_i = multiplies(m, vector(matrix_gauss, a))
+        line_d = vector(matrix_gauss, line)
+        line_d = difference(line_d, line_i)
+        matrix_gauss.line(line, line_d.line(0))
+        // Mudando para a próxima linha
+        line += 1
+      end
+      // Linha retorna para a posição inicial mais 1.
+      line = line_before + 1
+      // Mudando de coluna
+      a += 1
+    end
+    // Retornando o resultado
+    matrix_gauss
+  FIM FUNÇÃO
+
+Fim algoritmo
