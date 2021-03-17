@@ -126,7 +126,7 @@
       </div>
     </section>
 
-    <section class="container py-3" id="desenvolvimento">
+    <section class="container py-4" id="desenvolvimento">
       <div class="row">
         <div class="col-lg-12">
           <h2><strong>2. Desenvolvimento</strong></h2>
@@ -253,7 +253,7 @@
         <div class="col-lg-12 px-5" id="iterativos">
           <h3><strong>2.2 Métodos iterativos</strong></h3>
           <p>
-            Em métodos iterativos, as soluções de sistemas são encontradas a partir da forma explícita da equações, onde
+            Em métodos iterativos, as soluções de sistemas são encontradas a partir da forma explícita das equações, onde
             cada incógnita é escrita em termos das demais incógnitas. O primeiro passo é escolher uma solução inicial, esta
             é utilizada para determinar a próxima solução. Caso a nova solução não seja suficientemente precisa, será necessário
             utiliza-la para determinar uma nova solução. O processo é repetido até que a solução encontrada seja satisfatória.
@@ -272,7 +272,7 @@
             com $j \neq i$ e $i = 1, 2, 3, \cdots, n$.
             De modo geral, temos que a (k + 1)-ésima estimativa é encontrada a partir da k-ésima estimativa, usando a seguinte fórmula:
             $$x_i^{(k + 1)} = \frac{1}{a_{ii}} \left[ b_i\ - \sum\limits_{j\ =\ 1}^{n} a_{ij}x_j^{(k)} \right]$$
-            onde $j \neq i$ e $i = 1, 2, 3, \cdots, n$. As iterações são realizadas até que o valor absoluto do erro relativo estimativo, de cada
+            onde $j \neq i$ e $i = 1, 2, 3, \cdots, n$. As iterações são realizadas até que o valor absoluto do erro relativo estimado, de cada
             uma das variáveis, seja menor que um determinado valor. Ou seja, quando
             $$\left| \frac{x_i^{(k + 1)} - x_i^{(k)}}{x_i^{(k)}}\right| < e$$
             onde $e$ é o valor escolhido e o índice $i = 1, 2, 3, \cdots, n$. 
@@ -303,7 +303,7 @@
     10.  * (como não possuo nenhuma estimativa inicial, todas as incógnitas são iguais a zero)
     11.  * initial_solution = [0, 0, 0, 0, 0, 0]
     12.  *
-    13.  * Erro escolhido (e) = 0.000001
+    13.  * Erro escolhido (e) = 0.03
     14.  * 
     15.  * A variável 'ite' foi utilizada com contador de iterações
     16.  * Quando o método 'jacobi' é chamado, ite = 0
@@ -363,7 +363,7 @@
           <p>
             No método de Gauss-Seidel, assumimos valores iniciais para as variáveis $x_2, x_3, x_4, \cdots, x_n$. A partir
             destes determinamos o valor de $x_1$. O valor de $x_1$ e os demais valores, escolhidos como solução inicial, são utilizados
-            para determinar o próximo valor da incógnita $x_2$. Este processo é repetido até $x_n$. Diferentemente do método de Jacobi,
+            para determinar o próximo valor da incógnita ($x_2$). Este processo é repetido até $x_n$. Diferentemente do método de Jacobi,
             onde os novos valores estimados para as incógnitas são utilizados apenas na próxima estimativa de solução, no método de Gauss-Seidel
             o novo valor de uma incógnita é utilizado para determinar os valores das próximas variáveis. Ou seja, a medida que o valor de
             uma incógnita é calculado, ele é imediatamente utilizado para determinar os demais valores.
@@ -400,7 +400,7 @@
     10.  * (como não possuo nenhuma estimativa inicial, todas as incógnitas são iguais a zero)
     11.  * initial_solution = [0, 0, 0, 0, 0, 0]
     12.  *
-    13.  * Erro escolhido (e) = 0.000001
+    13.  * Erro escolhido (e) = 0.03
     14.  * 
     15.  * A variável 'ite' foi utilizada com contador de iterações
     16.  * Quando o método 'gauss_seidel' é chamado, ite = 0
@@ -495,7 +495,8 @@
           0.5 \\
           \end{array}
           \right]$$
-          Como o método de eliminição de Gauss não envolve o uso de soluções estimadas, não existe a possibilidade
+          Como o método de eliminação de Gauss
+           de Gauss não envolve o uso de soluções estimadas, não existe a possibilidade
           de calcularmos erros, pois a solução é exata. No entanto, podemos comparar a eficiência dos métodos a
           partir do números de iterações que cada um utilizou para chegar em uma solução suficientemente precisa.
           Ao utilizar o sistema de equações lineares, descrito pela matriz $M$, nenhum dos métodos iterativos convergiu. Portanto,
@@ -510,11 +511,11 @@
           -1 & 0 & 0 & 3 & -2 & 0 & 8 \\
           0 & 0 & -2 & 0 & -1.5 & 8 & 0
           \end{array}\right]$$
-          Questão 4.37 dos exercícios propostos pelo livro. A matriz descreve o seguinte sistema linear:
+          Matriz retirada da Questão 4.37, dos exercícios propostos pelo livro "Métodos Numéricos para Engenheiros e Cientistas". A matriz descreve o seguinte sistema linear:
           <div class="row justify-content-center py-3">
             <img src="img/matriz_q.jpg" style="width: 30%;">
           </div>
-          As equações foram encontradas a partir da aplicação da Lei de Kirchhoff para malhas. Como alguns dos coeficientes pivô são iguais a zero, eu utilizei o processo de pivotação para mudar isso.
+          As equações foram encontradas a partir da aplicação das Leis de Kirchhoff. Como alguns dos coeficientes pivô são iguais a zero, eu utilizei o processo de pivotação para mudar isso.
           Finalizada a pivotação, utilizei o método de eliminação de Gauss e encontrei o seguinte vetor solução:
           $$X = 
           \left[
@@ -541,9 +542,9 @@
             A matriz $Q$ foi utilizada e como solução inicial, assumi que todos as incógnitas são iguais a zero. Para prosseguir, e 
             encontrar uma nova estimativa de solução, utilizei a fórmula:
             $$x_i^{(k + 1)} = \frac{1}{a_{ii}} \left[ b_i\ - \sum\limits_{j\ =\ 1}^{n} a_{ij}x_j^{(k)} \right]$$
-            A primeira iteração deste método se encerra quando $i = n$. Neste caso, $i = 6$. O valor escolhido para o erro foi $e = 0.000001$.
-            E, o método precisou de 107 iterações para que cada uma das incógnitas apresenta-se, o erro relativo estimado, menor que $e$. Ou seja,
-            foram necessárias 107 iterações para que a solução convirja. A seguir, apresento um gráfico contendo o erro relativo estimado,
+            A primeira iteração deste método se encerra quando $i = n$. Neste caso, $i = 6$. O valor escolhido para o erro foi $e = 0.03$.
+            E, o método precisou de 25 iterações para que cada uma das incógnitas apresenta-se, o erro relativo estimado, menor que $e$. Ou seja,
+            foram necessárias 25 iterações para que a solução convergisse. A seguir, apresento um gráfico contendo o erro relativo estimado,
             de cada uma das incógnitas, a cada iteração.
             <div class="row justify-content-center">
               <div class="col-lg-12 text-center">
@@ -554,16 +555,22 @@
             $$X = 
             \left[
             \begin{array}{r}
-            1.046972 \\
-            -2.757565 \\
-            1.268919 \\
-            -0.593967 \\
-            -5.414438 \\
-            -0.697977
+            1.120837 \\
+            -2.652208 \\
+            1.357991 \\
+            -0.483507 \\
+            -5.307162 \\
+            -0.649281
             \end{array}
             \right]$$
-            o resultado também foi arredondado para facilitar a visualização dos números. Podemos verificar que o resultado
-            apresentado pelo método, pouco difere da solução exata para o sistema.
+            Como o Erro Relativo Estimado é dado por:
+            $$ERE = \left| \frac{x^{(k + 1)} - x^{(k)}}{x^{(k)}} \right|$$
+            o erro inicial apresentado pelas incógnitas tende ao infinito, pois assumimos que a solução 
+            inicial para as incógnitas são todas iguais a zero. A solução encontrada também foi arredondado para facilitar a visualização dos números. 
+            Podemos verificar que o resultado apresentado pelo método, difere da solução exata para o sistema. Este resultado é decorrente da não utilização
+            de uma estimativa inicial aproximada da solução real. Outro fator que alterou a precisão da solução, foi a escolha do critério de parada.
+            O critério de parada utilizado é que o valor do ERE de cada umas das incógnitas seja menor que $0.03$. Além do valor escolhido como parada, ser relativamente
+            alto, o modo como o erro foi calculado também interfere na solução apresentada pelo método.
           </p>
         </div>
         <div class="col-lg-12 px-5" id="gauss_seidel">
@@ -573,7 +580,7 @@
             que todas as incógnita são iguais a zero. Para dar início as iterações, utilizei a fórmula:
             $$x_i^{(k + 1)} = \frac{1}{a_{ii}} \left[ b_i\ - \left(\sum\limits_{j\ =\ 1}^{i - 1} a_{ij}x_j^{(k + 1)} +\sum\limits_{j\ =\ i + 1}^{n} a_{ij}x_j^{(k)}\right)\right]$$
             com $i = 2, 3, \cdots, n - 1$. O critério de parada utilizado é o mesmo para o método de Jacobi. Todas as incógnitas
-            devem apresentar o erro relativo estimado, menor que $e$. Este método precisou de 59 iterações para convergir. A seguir, apresento um gráfico contendo o erro relativo estimado,
+            devem apresentar o erro relativo estimado, menor que $e$. Este método precisou de 18 iterações para convergir. A seguir, apresento um gráfico contendo o erro relativo estimado,
             de cada uma das incógnitas, a cada iteração.
             <div class="row justify-content-center">
               <div class="col-lg-12 text-center">
@@ -584,15 +591,15 @@
             $$X = 
             \left[
             \begin{array}{r}
-            1.046970 \\
-            -2.757568 \\
-            1.268917 \\
-            -0.593970 \\
-            -5.414441 \\
-            -0.697978
+            1.081722 \\
+            -2.714426 \\
+            1.301746 \\
+            -0.548739 \\
+            -5.374902 \\
+            -0.682357
             \end{array}
             \right]$$
-            o vetor $X$ resultante da implementação do método pouco difere, da solução analítica, encontrada com o método de eliminação de Gauss.
+            o vetor $X$ resultante da implementação do método é mais preciso, quando comparado com o vetor $X$ encontrado pelo método de Jacobi.
           </p>
         </div>
       </div>
@@ -602,6 +609,32 @@
       <div class="row justify-content-center">
         <div class="col-lg-12">
           <h2><strong>4. Conclusão</strong></h2>
+        </div>
+        <div class="col-lg-12 px-5">
+          <p>
+            Apesar dos métodos iterativos não apresentaram a solução exata para o sistema linear em questão, ambos os métodos
+            iterativos podem ser utilizados quando o método de eliminação de Gauss não puder ser aplicado. No caso da matriz $M$
+            (inicialmente escolhida como a matriz que descreveria o sistema linear deste trabalho) não pode ser utilizada nos métodos
+            iterativos, pois as soluções não convergiam. Portanto, foi necessário utilizar uma outra matriz (outro sistema), a fim
+            de estabelecer uma comparação na eficiência dos três métodos.
+            <br>
+            <br>
+            A matriz $Q$, foi escolhida e utilizado nos três métodos. O primeiro método, o método de eliminação de Gauss, necessitou
+            de apenas 21 iterações para apresentar a solução exata para o sistema. Como o processo não utiliza estimativas de soluções
+            para incógnitas, não podemos comparar os erros apresentados pelos métodos. No segundo método, o método de Jacobi, a implementação
+            retornou a solução após 25 iterações, onde o critério de parada escolhido foi $ERE < 0.03$ (para cada incógnita). Apesar do valor 
+            para erro ser 0.03 (3%), a solução $X$ apresentada pelo método apresenta um erro maior, quando comparada com a solução exata (encontrada
+            pelo método de eliminação de Gauss). O erro da solução gira em torno de 7%. Isso se deve ao uso do erro relativo estimado. Por fim, o método de Gauss-Seidel, precisou de 
+            apenas 18 iterações para que a solução convergisse. Mesmo utilizando o critério de parada do método de Jacobi, a solução apresentada
+            por este método, apresentou menor erro, quando comparada com a solução exata. Neste caso, o erro apresentado pela solução está entre 3% e 4%.
+            <br>
+            <br>
+            Portanto, quando comparamos os três métodos, aquele que apresenta a maior precisão é método de eliminação de Gauss (por apresentar a solução exata).
+            No entanto, caso seja tolerável que a solução para o sistema apresente erros, o método de Gauss-Seidel pode ser utilizado (caso a solução convirja), pois,
+            entre os três métodos, foi o que apresentou o menor número de iterações. É necessário destacar que, apesar dos métodos de Jacobi e de Gauss-Seidel serem
+            similares, a diferença no número de iterações, que cada método precisa para convergir se torna grande, quando a precisão escolhida é alta. Logo, o método 
+            de Gauss-Seidel se destaca, por utilizar menos iterações.
+          </p>
         </div>
       </div>
     </section>

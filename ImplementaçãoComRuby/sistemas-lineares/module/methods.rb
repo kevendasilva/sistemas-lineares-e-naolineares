@@ -50,7 +50,7 @@ module Methods
     num_of_interations.times do |i| # Verificando o erro relativo estimado
       err_i = ((next_solution[i] - initial_solution[i]) / initial_solution[i]).abs
       err.push(err_i)
-      if err_i < 0.000001
+      if err_i < 0.03
         err_x_i.push(true) # Caso o erro da incógnita seja menor que o erro escolhido, o array recebe "true"
       else
         err_x_i.push(false) # Caso contrário, recebe "false"

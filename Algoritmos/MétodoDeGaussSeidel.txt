@@ -10,7 +10,7 @@
 10.  * (como não possuo nenhuma estimativa inicial, todas as incógnitas são iguais a zero)
 11.  * initial_solution = [0, 0, 0, 0, 0, 0]
 12.  *
-13.  * Erro escolhido (e) = 0.000001
+13.  * Erro escolhido (e) = 0.03
 14.  * 
 15.  * A variável 'ite' foi utilizada com contador de iterações
 16.  * Quando o método 'gauss_seidel' é chamado, ite = 0
