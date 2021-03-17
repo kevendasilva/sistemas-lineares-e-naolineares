@@ -47,6 +47,31 @@
         </div>
       </div>
     </section>
+
+    <section class="container py-4">
+      <div class="row justify-content-center">
+        <div class="col-lg-12 text-center">
+          <h3><strong>Sumário</strong></h3>
+        </div>
+        <div class="col-lg-12 px-5">
+          <ol>
+            <li><a href="#introdução">Introdução</a></li>
+            <li><a href="#desenvolvimento">Desenvolvimento</a></li>
+            <ol>
+              <li><a href="#diretos">Métodos diretos</a></li>
+              <li><a href="#iterativos">Métodos iterativos</a></li>
+            </ol>
+            <li><a href="#resultados">Resultados</a></li>
+            <ol>
+              <li><a href="#gauss">Método de eliminação de Gauss</a></li>
+              <li><a href="#jacobi">Método de Jacobi</a></li>
+              <li><a href="#gauss_seidel">Método de Gauss-Seidel</a></li>
+            </ol>
+            <li><a href="#conclusão">Conclusão</a></li>
+          </ol>
+        </div>
+      </div>
+    </section>
     
     <section class="container py-4" id="introdução">
       <div class="row">
@@ -60,7 +85,40 @@
             $$\vdots$$
             $$a_{n1}x_1 + a_{n2}x_2 + \cdots + a_{nn}x_n = b_n$$
             <br>
-            Dois tipos de métodos numéricos, <a href="#diretos">diretos</a> e <a href="#iterativos">iterativos</a>, são
+            E, na forma matricial é dado como $[a][x] = [b]$, ou ainda
+            $$
+            \left[
+            \begin{array}{ccccc}
+            a_{11} & a_{12} & a_{13} & \cdots & a_{1n} \\
+            a_{21} & a_{22} & a_{23} & \cdots & a_{2n} \\
+            a_{31} & a_{32} & a_{33} & \cdots & a_{3n} \\
+            \vdots & \vdots & \vdots & \ddots & \vdots \\
+            a_{n1} & a_{n2} & a_{n3} & \cdots & a_{nn} 
+            \end{array}
+            \right]
+            \left[
+            \begin{array}{c}
+            x_1 \\
+            x_2 \\
+            x_3 \\
+            \vdots \\
+            x_n
+            \end{array}
+            \right]
+
+            =
+
+            \left[
+            \begin{array}{c}
+            b_1 \\
+            b_2 \\
+            b_3 \\
+            \vdots \\
+            b_n
+            \end{array}
+            \right]
+            $$
+            Existem dois tipos de métodos numéricos, <a href="#diretos">diretos</a> e <a href="#iterativos">iterativos</a>, que são
             utilizados para solucionar sistemas de equações lineares. Nos métodos diretos, a solução é obtida a partir do 
             uso de operações algébricas nas equações. E, nos métodos iterativos, uma solução inicial é escolhida e, utilizada
             em um processo iterativo para estimar uma nova solução mais precisa.</p>
@@ -74,7 +132,7 @@
           <h2><strong>2. Desenvolvimento</strong></h2>
         </div>
         <div class="col-lg-12 px-5" id="diretos">
-          <h3><strong>2.1 Método direto</strong></h3>
+          <h3><strong>2.1 Métodos diretos</strong></h3>
           <h5><i>2.1.1 Método de eliminação de Gauss</i></h5>
           <p>
             Neste procedimento, o sistema de equações lineares é manipulado algebricamente, até que apresente  a forma
@@ -97,11 +155,11 @@
             $$
             \left[
             \begin{array}{cccccc}
-            a_{11}x_1 & a_{12}x_2 & a_{13}x_3 & \cdots & a_{1n}x_n & b_1 \\
-            0 & a'_{22}x_2 & a'_{23}x_3 & \cdots & a'_{2n}x_n & b'_2 \\ 
-            0 & 0 & a'_{33}x_3 & \cdots & a'_{3n}x_n & b'_3 \\ 
+            a_{11} & a_{12} & a_{13}& \cdots & a_{1n} & b_1 \\
+            0 & a'_{22} & a'_{23} & \cdots & a'_{2n} & b'_2 \\ 
+            0 & 0 & a'_{33} & \cdots & a'_{3n} & b'_3 \\ 
             \vdots & \vdots & \vdots & \ddots & \vdots & \vdots\\
-            0 & 0 & 0 & \cdots & a'_{nn}x_n & b'_n \\ 
+            0 & 0 & 0 & \cdots & a'_{nn} & b'_n \\ 
             \end{array}
             \right]
             $$
@@ -401,21 +459,152 @@
       </div>
     </section>
 
-    <section class="container" id="resultados">
+    <section class="container py-4" id="resultados">
       <div class="row justify-content-center">
         <div class="col-lg-12">
           <h2><strong>3. Resultados</strong></h2>
         </div>
+        <div class="col-lg-12 px-5" id="gauss">
+         <h3><strong>3.1 Método de eliminação de Gauss</strong></h3>
+          <p>
+          Os métodos numéricos para solucionar sistemas lineares, abordados nesse trabalho, foram implementados na linguagem de 
+          programação Ruby. O primeiro método, o método de eliminação de Gauss, recebeu como matriz de entrada a matriz (estendida) a seguir:
+          $$M = 
+          \left[ \begin{array}{rrrrr} 
+            4 & -2 & -3 & 6 & 12 \\
+          -6 & 7 & 6.5 & -6 & -6.5 \\
+          1 & 7.5 & 6.25 & 5.5 & 16 \\
+          -12 & 22 & 15.5 & -1 & 17
+          \end{array}\right]$$
+          Esta matriz foi retirada do Exemplo 4.1, do livro "Métodos Numéricos para Engenheiros e Cientistas". Após o procedimento realizado
+          pelo método, obtive a seguinte matriz como resultado:
+          $$M^´ = 
+          \left[ \begin{array}{rrrrr} 
+            4 & -2 & -3 & 6 & 12 \\
+          0 & 4 & 2 & 3 & 11.5 \\
+          0 & 0 & 3 & -2 & -10 \\
+          0 & 0 & 0 & 4 & 2
+          \end{array}\right]$$
+          com o uso da substituição regressiva, encontrei o seguinte vetor solução:
+          $$X = 
+          \left[
+          \begin{array}{r}
+          2 \\
+          4 \\
+          -3 \\
+          0.5 \\
+          \end{array}
+          \right]$$
+          Como o método de eliminição de Gauss não envolve o uso de soluções estimadas, não existe a possibilidade
+          de calcularmos erros, pois a solução é exata. No entanto, podemos comparar a eficiência dos métodos a
+          partir do números de iterações que cada um utilizou para chegar em uma solução suficientemente precisa.
+          Ao utilizar o sistema de equações lineares, descrito pela matriz $M$, nenhum dos métodos iterativos convergiu. Portanto,
+          eu "descartei" essa matriz e procurei uma que poderia ser utilizada nos três métodos. A outra matriz utilizada
+          foi:
+          $$Q = 
+          \left[ \begin{array}{rrrrrrr} 
+          8 & -4 & 0 & -1 & 0 & 0 & 20 \\
+          0 & -2.5 & 4.5 & 0 & 0 & -2 & 14 \\
+          0 & -5 & 0 & -2 & 8.5 & -1.5 & -30 \\
+          -4 & 11.5 & -2.5 & 0 & -5 & 0 & -12 \\
+          -1 & 0 & 0 & 3 & -2 & 0 & 8 \\
+          0 & 0 & -2 & 0 & -1.5 & 8 & 0
+          \end{array}\right]$$
+          Questão 4.37 dos exercícios propostos pelo livro. A matriz descreve o seguinte sistema linear:
+          <div class="row justify-content-center py-3">
+            <img src="img/matriz_q.jpg" style="width: 30%;">
+          </div>
+          As equações foram encontradas a partir da aplicação da Lei de Kirchhoff para malhas. Como alguns dos coeficientes pivô são iguais a zero, eu utilizei o processo de pivotação para mudar isso.
+          Finalizada a pivotação, utilizei o método de eliminação de Gauss e encontrei o seguinte vetor solução:
+          $$X = 
+          \left[
+          \begin{array}{r}
+          1.046970 \\
+          -2.757568 \\
+          1.268917 \\
+          -0.593970 \\
+          -5.414441 \\
+          -0.697978
+          \end{array}
+          \right]$$
+          Os valores das incógnitas foram arredondados para facilitar a visualização dos números. Como definido anteriormente,
+          o número de iterações, em função do número de linhas $n$, é dado por:
+          $$t(n) = \frac{n(n + 1)}{2}$$
+          para $n\ = 6$, temos:
+          $$t(6) = \frac{6(6 + 1)}{2} = 21$$
+          Logo, o número de iterações que o método utilizou foi 21.
+          </p>
+        </div>
+        <div class="col-lg-12 px-5" id="jacobi">
+          <h3><strong>3.2 Método de Jacobi</strong></h3>
+          <p>
+            A matriz $Q$ foi utilizada e como solução inicial, assumi que todos as incógnitas são iguais a zero. Para prosseguir, e 
+            encontrar uma nova estimativa de solução, utilizei a fórmula:
+            $$x_i^{(k + 1)} = \frac{1}{a_{ii}} \left[ b_i\ - \sum\limits_{j\ =\ 1}^{n} a_{ij}x_j^{(k)} \right]$$
+            A primeira iteração deste método se encerra quando $i = n$. Neste caso, $i = 6$. O valor escolhido para o erro foi $e = 0.000001$.
+            E, o método precisou de 107 iterações para que cada uma das incógnitas apresenta-se, o erro relativo estimado, menor que $e$. Ou seja,
+            foram necessárias 107 iterações para que a solução convirja. A seguir, apresento um gráfico contendo o erro relativo estimado,
+            de cada uma das incógnitas, a cada iteração.
+            <div class="row justify-content-center">
+              <div class="col-lg-12 text-center">
+                <canvas id="errChartJacobi"></canvas>
+              </div>
+            </div>
+            O resultado encontrado pelo método foi o seguinte:
+            $$X = 
+            \left[
+            \begin{array}{r}
+            1.046972 \\
+            -2.757565 \\
+            1.268919 \\
+            -0.593967 \\
+            -5.414438 \\
+            -0.697977
+            \end{array}
+            \right]$$
+            o resultado também foi arredondado para facilitar a visualização dos números. Podemos verificar que o resultado
+            apresentado pelo método, pouco difere da solução exata para o sistema.
+          </p>
+        </div>
+        <div class="col-lg-12 px-5" id="gauss_seidel">
+          <h3><strong>3.3 Método de Gauss-Seidel</strong></h3>
+          <p>
+            No método de Gauss-Seidel, a matriz $Q$ foi novamente utilizada. De modo semelhante ao método anterior, assumi
+            que todas as incógnita são iguais a zero. Para dar início as iterações, utilizei a fórmula:
+            $$x_i^{(k + 1)} = \frac{1}{a_{ii}} \left[ b_i\ - \left(\sum\limits_{j\ =\ 1}^{i - 1} a_{ij}x_j^{(k + 1)} +\sum\limits_{j\ =\ i + 1}^{n} a_{ij}x_j^{(k)}\right)\right]$$
+            com $i = 2, 3, \cdots, n - 1$. O critério de parada utilizado é o mesmo para o método de Jacobi. Todas as incógnitas
+            devem apresentar o erro relativo estimado, menor que $e$. Este método precisou de 59 iterações para convergir. A seguir, apresento um gráfico contendo o erro relativo estimado,
+            de cada uma das incógnitas, a cada iteração.
+            <div class="row justify-content-center">
+              <div class="col-lg-12 text-center">
+                <canvas id="errChartGaussSeidel"></canvas>
+              </div>
+            </div>
+            O resutaldo da implementação do método foi:
+            $$X = 
+            \left[
+            \begin{array}{r}
+            1.046970 \\
+            -2.757568 \\
+            1.268917 \\
+            -0.593970 \\
+            -5.414441 \\
+            -0.697978
+            \end{array}
+            \right]$$
+            o vetor $X$ resultante da implementação do método pouco difere, da solução analítica, encontrada com o método de eliminação de Gauss.
+          </p>
+        </div>
       </div>
     </section>
 
-    <div class="container" style="width: 50%;">
+    <section class="container py-4" id="conclusão">
       <div class="row justify-content-center">
-        <div class="col-lg-12 text-center">
-          <canvas id="errChart"></canvas>
+        <div class="col-lg-12">
+          <h2><strong>4. Conclusão</strong></h2>
         </div>
       </div>
-    </div>
+    </section>
 
     <script src="script/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
