@@ -481,6 +481,9 @@ let configJ = {
   },
 };
 
+// Aviso
+alert('Aviso: os elementos em LaTeX podem demorar alguns segundos para carregarem!')
+
 // Capturando os dados relativos aos erros de cada incógnita
 function getDataErr(ind, iterations){
   let arrayData = [];
